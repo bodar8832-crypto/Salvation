@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Salvation</title>
+  <style>
+    body {
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    /* Hidden link */
+    a.secret {
+      position: absolute;
+      top: 45%;  /* adjust this hotspot location */
+      left: 50%;
+      width: 120px;
+      height: 120px;
+      transform: translate(-50%, -50%);
+      text-indent: -9999px; /* hides link text */
+      overflow: hidden;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <img id="slideshow" src="gif1.gif" alt="Salvation">
+  <a class="secret" href="https://example.com">hidden link</a>
+
+  <script>
+    const gifs = ["gif1.gif", "gif2.gif", "gif3.gif"]; // add more if you like
+    let index = 0;
+    const slideshow = document.getElementById("slideshow");
+
+    setInterval(() => {
+      index = (index + 1) % gifs.length;
+      slideshow.src = gifs[index];
+    }, 5000); // change every 5 seconds
+  </script>
+</body>
+</html>
