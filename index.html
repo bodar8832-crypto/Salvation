@@ -5,6 +5,8 @@
   <style>
     body {
       background: black;
+      color: white;
+      font-family: sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -12,37 +14,79 @@
       margin: 0;
       overflow: hidden;
     }
+    #gate {
+      text-align: center;
+    }
+    #content {
+      display: none; /* hidden until correct code */
+    }
     img {
       max-width: 100%;
       height: auto;
     }
-    /* Hidden link */
     a.secret {
       position: absolute;
-      top: 45%;  /* adjust this hotspot location */
+      top: 45%;  
       left: 50%;
-      width: 1200px;
-      height: 1200px;
+      width: 120px;
+      height: 120px;
       transform: translate(-50%, -50%);
-      text-indent: -9999px; /* hides link text */
+      text-indent: -9999px;
       overflow: hidden;
       cursor: pointer;
+    }
+    /* Flashing error message */
+    .flash {
+      color: red;
+      font-weight: bold;
+      animation: flash 1s infinite;
+    }
+    @keyframes flash {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <img id="slideshow" src="giphy (2).gif" alt="Salvation">
-  <a class="secret" href="https://youtube.com">hidden link</a>
+  <!-- Code Gate -->
+  <div id="gate">
+    <h1>Enter Access Code</h1>
+    <input type="password" id="codeInput" placeholder="Code">
+    <button onclick="checkCode()">Enter</button>
+    <p id="message"></p>
+  </div>
+
+  <!-- Hidden content -->
+  <div id="content">
+    <img id="slideshow" src="gif1.gif" alt="Salvation">
+    <a class="secret" href="https://example.com">hidden link</a>
+  </div>
 
   <script>
-    const gifs = ["giphy (2).gif", "giphy (1).gif", "200w (1).gif"]; // add more if you like
+    function checkCode() {
+      const input = document.getElementById("codeInput").value;
+      const message = document.getElementById("message");
+
+      if (input === "2413") {
+        document.getElementById("gate").style.display = "none";
+        document.getElementById("content").style.display = "block";
+      } else {
+        message.textContent = "False, False, False, turn back";
+        message.classList.add("flash");
+      }
+    }
+
+    // slideshow logic
+    const gifs = ["gif1.gif", "gif2.gif", "gif3.gif"];
     let index = 0;
     const slideshow = document.getElementById("slideshow");
 
     setInterval(() => {
-      index = (index + 1) % gifs.length;
-      slideshow.src = gifs[index];
-    }, 5000); // change every 5 seconds
+      if (document.getElementById("content").style.display === "block") {
+        index = (index + 1) % gifs.length;
+        slideshow.src = gifs[index];
+      }
+    }, 5000);
   </script>
 </body>
 </html>
