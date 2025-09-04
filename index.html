@@ -24,6 +24,13 @@
       max-width: 100%;
       height: auto;
     }
+    #slideshow {
+      width: 320px;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+    }
     a.secret {
       position: absolute;
       top: 45%;  
@@ -58,8 +65,8 @@
 
   <!-- Hidden content -->
   <div id="content">
-    <img id="slideshow" src="giphy (1).gif" alt="Salvation">
-    <a class="secret" href="https://example.com">hidden link</a>
+    <img id="slideshow" src="gif1.gif" alt="Salvation">
+    <a class="secret" href="https://www.youtube.com/watch?v=mDF_ME3ihKM">hidden link</a>
   </div>
 
   <script>
@@ -78,8 +85,8 @@
 
     // slideshow logic
     const gifs = [
-      "images (36).jpeg",
-      "images (35).jpeg",
+      "images (36).gif",
+      "images (35).gif",
       "b48cf55663ae7c4c95715bc31eb6c3f4.gif",
       "d53405ec19c25a96bcb2b68d34e9ce3b.gif",
       "f6e744008bf4b13876dc0269c016cce2.gif",
@@ -94,7 +101,7 @@
         index = (index + 1) % gifs.length;
         slideshow.src = gifs[index];
       }
-    }, 3000);
+    }, 5000);
   </script>
 </body>
 </html>
