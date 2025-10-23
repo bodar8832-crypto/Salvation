@@ -1,107 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Salvation</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Incoming Transmission</title>
   <style>
     body {
-      background: black;
-      color: white;
-      font-family: sans-serif;
+      background-color: black;
+      color: red;
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
+      font-size: 2rem;
     }
-    #gate {
-      text-align: center;
-    }
-    #content {
-      display: none; /* hidden until correct code */
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-    #slideshow {
-      width: 320px;
-      height: 240px;
-      object-fit: cover;
-      display: block;
-      margin: 0 auto;
-    }
-    a.secret {
-      position: absolute;
-      top: 45%;  
-      left: 50%;
-      width: 120px;
-      height: 120px;
-      transform: translate(-50%, -50%);
-      text-indent: -9999px;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    /* Flashing error message */
     .flash {
-      color: red;
-      font-weight: bold;
       animation: flash 1s infinite;
     }
     @keyframes flash {
       0%, 50%, 100% { opacity: 1; }
       25%, 75% { opacity: 0; }
     }
+    iframe {
+      display: none;
+      width: 80vw;
+      height: 45vw;
+      max-width: 960px;
+      max-height: 540px;
+    }
   </style>
 </head>
 <body>
-  <!-- Code Gate -->
-  <div id="gate">
-    <h1>Enter Access Code</h1>
-    <input type="password" id="codeInput" placeholder="Code">
-    <button onclick="checkCode()">Enter</button>
-    <p id="message"></p>
-  </div>
-
-  <!-- Hidden content -->
-  <div id="content">
-    <img id="slideshow" src="200w (1).gif" alt="Salvation">
-    <a class="secret" href="https://www.youtube.com/watch?v=mDF_ME3ihKM">hidden link</a>
-  </div>
+  <div id="warning" class="flash">WARNING, INCOMING TRANSMISSION</div>
+  <iframe 
+    id="transmission"
+    src=""
+    title="Incoming Transmission"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
 
   <script>
-    function checkCode() {
-      const input = document.getElementById("codeInput").value;
-      const message = document.getElementById("message");
+    // How long to show the warning before playing the video (ms)
+    const warningDuration = 4000;
 
-      if (input === "2413") {
-        document.getElementById("gate").style.display = "none";
-        document.getElementById("content").style.display = "block";
-      } else {
-        message.textContent = "False, False, False, turn back";
-        message.classList.add("flash");
-      }
-    }
+    // Your YouTube video link (autoplay enabled)
+    const youtubeUrl = "https://youtu.be/_2xrbUif0j8";
 
-    // slideshow logic
-    const gifs = [
-      "images (35).jpeg",
-      "b48cf55663ae7c4c95715bc31eb6c3f4.gif",
-      "d53405ec19c25a96bcb2b68d34e9ce3b.gif",
-      "f6e744008bf4b13876dc0269c016cce2.gif",
-      "giphy (1).gif",
-      "giphy (2).gif",
-      "200w (1).gif",
-    ];
-    let index = 0;
-    const slideshow = document.getElementById("slideshow");
-
-    setInterval(() => {
-      if (document.getElementById("content").style.display === "block") {
-        index = (index + 1) % gifs.length;
-        slideshow.src = gifs[index];
-      }
-    }, 5000);
+    setTimeout(() => {
+      document.getElementById('warning').style.display = 'none';
+      const frame = document.getElementById('transmission');
+      frame.src = youtubeUrl;
+      frame.style.display = 'block';
+    }, warningDuration);
   </script>
 </body>
 </html>
