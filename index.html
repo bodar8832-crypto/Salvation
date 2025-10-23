@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Incoming Transmission</title>
   <style>
     body {
-      margin: 0;
-      background-color: black;
-      color: red;
-      font-family: 'Orbitron', sans-serif;
-      text-align: center;
-      height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
+      height: 100vh;
+      background-color: black;
+      color: red;
+      font-family: Arial, sans-serif;
     }
 
-    .flash {
+    .warning {
+      font-size: 3em;
+      font-weight: bold;
       animation: flash 1s infinite;
-      font-size: 2rem;
+      margin-bottom: 30px;
+      text-align: center;
     }
 
     @keyframes flash {
@@ -28,72 +29,29 @@
       25%, 75% { opacity: 0; }
     }
 
-    #begin-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 1.2rem;
-      cursor: pointer;
+    .btn {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      color: white;
       background-color: red;
-      color: black;
       border: none;
-      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
 
-    #transmission {
-      display: none;
-      width: 80vw;
-      height: 45vw;
-      max-width: 960px;
-      max-height: 540px;
-      border: none;
-      margin-top: 20px;
-    }
-
-    #static {
-      display: none;
-      width: 100vw;
-      height: 100vh;
-      background: repeating-linear-gradient(
-        0deg,
-        #000,
-        #000 2px,
-        #111 3px
-      );
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0.5;
-      animation: staticAnim 0.1s infinite;
-      z-index: 10;
-    }
-
-    @keyframes staticAnim {
-      0% { background-position: 0 0; }
-      100% { background-position: 0 5px; }
+    .btn:hover {
+      background-color: darkred;
     }
   </style>
 </head>
 <body>
-  <div id="warning" class="flash">WARNING, INCOMING TRANSMISSION</div>
-  <button id="begin-btn">BEGIN TRANSMISSION</button>
-
-  <div id="static"></div>
-
-  <iframe 
-    id="transmission"
-    src=""
-    title="Incoming Transmission"
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-  </iframe>
+  <div class="warning">WARNING: INCOMING TRANSMISSION</div>
+  <button class="btn" onclick="beginTransmission()">Begin Transmission</button>
 
   <script>
-    const button = document.getElementById('begin-btn');
-    const warning = document.getElementById('warning');
-    const staticScreen = document.getElementById('static');
-    const frame = document.getElementById('transmission');
-
-    // Replace with your video ID
-    const youtubeUrl = "https://youtu.be/_2xrbUif0j8";
-
-    button.addEventListener
+    function beginTransmission() {
+      window.location.href = "https://youtu.be/_2xrbUif0j8";
+    }
+  </script>
+</body>
+</html>
